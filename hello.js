@@ -2,9 +2,9 @@
 * @Author: xiongsheng
 * @Date:   2016-05-18 19:04:37
 * @Last Modified by:   xiongsheng
-* @Last Modified time: 2016-05-18 19:05:25
+* @Last Modified time: 2016-05-18 19:07:41
 */
 
 (function () {
-    alert('hello');
+    alert('么么哒');
 })();
