@@ -6,6 +6,7 @@ a:active { outline: 0 none }
 img { -ms-interpolation-mode: bicubic }
 i, cite, em, var, address, dfn { font-style: normal }
 h2, h3, h4, h5, h6 { font-weight: normal; font-size: 100% }
+h1 { font-weight: normal; }
 li { list-style: none }
 button, input, select, textarea { font-size: 100%; vertical-align: middle; color: inherit }
 .btn { font-size: 36px; display: inline-block; background-color: #3894f1; padding: 0 170px; height: 69px; line-height: 69px; color: #fff; border-radius: 4px }
