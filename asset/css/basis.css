@@ -45,8 +45,8 @@ button, input, select, textarea { font-size: 100%; vertical-align: middle; color
 .index_top .tel { float: right; display: inline }
 .index_top .tel .service { font-size: 16px; color: #5c5c5c }
 .index_top .tel .num { font-size: 30px; color: #4a95f0 }
-.index_top .index_banner { clear: both; height: 706px; background-color: #000813; margin-top: 68px; *padding-top: 68px; _margin-top: 0; _padding-top: 0 }
-.index_top .index_banner .banner_box { height: 706px; position: relative }
+.index_top .index_banner { clear: both; height: 707px; background-color: #000813; margin-top: 68px; *padding-top: 68px; _margin-top: 0; _padding-top: 0 }
+.index_top .index_banner .banner_box { height: 707px; position: relative }
 .index_top .index_banner .banner_wrap { width: 1340px; margin: 0 auto; overflow: hidden; zoom: 1 }
 .index_top .index_banner .img_box { float: left; display: inline; width: 1340px; height: 100% }
 .index_top .index_banner .slider_btn { position: absolute; bottom: 30px; left: 50%; margin-left: -61px }
