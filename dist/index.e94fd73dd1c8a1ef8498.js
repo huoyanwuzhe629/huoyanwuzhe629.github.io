@@ -1,0 +1,1 @@
+webpackJsonp([0,2,3],[function(n,i,e){(function(n){e(2),function(){n(".flexslider").flexslider({animation:"slide",directionNav:!1,slideshowSpeed:4e3,pauseOnAction:!1,keyboard:!1,start:function(i){n(".flex-control-nav").find("a").click(function(){i.pause(),setTimeout(function(){i.play()},1e3)})}})}()}).call(i,e(1))},,function(n,i){}]);

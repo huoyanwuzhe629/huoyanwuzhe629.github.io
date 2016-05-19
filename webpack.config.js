@@ -3,43 +3,19 @@ var HtmlWebpackPlugin = require('html-webpack-plugin'),
     webpack = require('webpack'),
     path = require('path');
 
-var mockport, hashType, devtool, port = 80;
-//开发环境和上线环境需要区分
-if(process.env.NODE_ENV === 'production') {
-    //上线环境
-    // 配置2：hasType
-    // 在上线环境使用chunkhash
-    hashType = 'chunkhash';
-    // 配置3：devtool
-    // 在上线环境中，devtool为空值
-    devtool = '';
-} else {//其他都是开发环境
+var hashType, devtool;
 
-    //配置1：mockport
-    //bizdp在启动webpack-dev-server时会默认把bizmock监听的随机端口号从命令行中传递过来
-    //eg:webpack-dev-server --mockport 8888
-    process.argv.forEach(function(val, index){
-        if(val === '--mockport'){
-            mockport = process.argv[index+1];
-        } else if(val === '--port'){
-            port = process.argv[index+1];
-        }
-    });
 
-    //配置2：hasType
-    // 在开发环境中要使用hash代替chunkhash
-    // webpack-dev-server不支持chunkhash
     hashType = 'hash';
-    // 配置3：devtool
-    // 在上线环境中，devtool为source-map
-    devtool = 'source-map';
-}
+
+    devtool = '';
+
 
 module.exports = {
   entry: {
     index: './src/index.js',
     vendor: [
-      'jquery'
+      'jquery', 'flexslider'
     ]
   },
   // resolve: {

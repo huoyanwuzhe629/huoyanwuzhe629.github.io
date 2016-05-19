@@ -16,6 +16,7 @@
     "src"
   ],
   "dependencies": {
+    "flexslider": "^2.6.0",
     "jquery": "2.1.4",
     "jquery-migrate": "1.2.1"
   },
