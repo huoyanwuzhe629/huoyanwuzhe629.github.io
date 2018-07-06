@@ -763,7 +763,25 @@ document.documentElement.style.fontSize = clientWidth / 100 + &#39;px&#39;;</pre
 
   
 
-  
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: 'mobile-rem-practice.md',
+    title: '移动端自适应实践',
+    link: decodeURI(location.href),
+    desc: '移动端自适应实践 市面上的方案 流式布局 也就是固定高度，宽度使用百分比的方法，这种方法会导致一些元素在大屏手机上拉伸严重的情况，影响视觉效果，只',
+    owner: 'huoyanwuzhe629',
+    repo: 'comments',
+    oauth: {
+      client_id: '82c0c71af55c6226bc6b',
+      client_secret: 'c4e33c830095e29488b2d5b0a4c93ab85e3a0765'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
   </article>
         </div>
       </div>
