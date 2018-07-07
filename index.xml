@@ -654,9 +654,7 @@ app.use((err, req, res, next) =&amp;gt; {
       
       <guid>https://huoyanwuzhe629.github.io/post/reactive-programming/</guid>
       
-        <description>&lt;h1 id=&#34;响应式编程&#34;&gt;响应式编程&lt;/h1&gt;
-
-&lt;h2 id=&#34;什么是响应式编程&#34;&gt;什么是响应式编程&lt;/h2&gt;
+        <description>&lt;h2 id=&#34;什么是响应式编程&#34;&gt;什么是响应式编程&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;响应式编程就是用异步数据流进行编程&lt;/p&gt;
@@ -1161,9 +1159,7 @@ push指的是生产者主动推送数据&lt;/p&gt;
       
       <guid>https://huoyanwuzhe629.github.io/post/mobile-rem-practice/</guid>
       
-        <description>&lt;h2 id=&#34;移动端自适应实践&#34;&gt;移动端自适应实践&lt;/h2&gt;
-
-&lt;h3 id=&#34;市面上的方案&#34;&gt;市面上的方案&lt;/h3&gt;
+        <description>&lt;h3 id=&#34;市面上的方案&#34;&gt;市面上的方案&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;流式布局&lt;/li&gt;
@@ -1176,6 +1172,8 @@ push指的是生产者主动推送数据&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;比如早期的淘宝webpage，页面设置成320的宽度，超出部分留白，在大屏幕手机上，就会出现两条大百边，分辨率高的手机，页面看起来就会特别小，按钮，文字也很小，之后淘宝改了布局方案，也就是接下来要讲的rem布局&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;响应式做法&lt;/li&gt;
@@ -1194,8 +1192,6 @@ push指的是生产者主动推送数据&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;rem是css3新引入的单位，在pc端会有兼容性的问题，对移动端比较友好。简而言之就是通过动态设置html根元素的fontsize，等比缩放元素大小来自适应移动设备。&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;rem方案&#34;&gt;rem方案&lt;/h3&gt;
 

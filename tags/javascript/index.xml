@@ -17,9 +17,7 @@
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://huoyanwuzhe629.github.io/post/reactive-programming/</guid>
-      <description>&lt;h1 id=&#34;响应式编程&#34;&gt;响应式编程&lt;/h1&gt;
-
-&lt;h2 id=&#34;什么是响应式编程&#34;&gt;什么是响应式编程&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;什么是响应式编程&#34;&gt;什么是响应式编程&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;响应式编程就是用异步数据流进行编程&lt;/p&gt;
