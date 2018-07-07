@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://huoyanwuzhe629.github.io/post/exceptional_handling/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://huoyanwuzhe629.github.io/post/mobile-rem-practice/</loc>
     <lastmod>2018-07-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -23,6 +30,13 @@
   </url>
   
   <url>
+    <loc>https://huoyanwuzhe629.github.io/tags/exception/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://huoyanwuzhe629.github.io/tags/mobile/</loc>
     <lastmod>2018-07-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -30,8 +44,22 @@
   </url>
   
   <url>
+    <loc>https://huoyanwuzhe629.github.io/tags/node/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://huoyanwuzhe629.github.io/categories/nodejs/</loc>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://huoyanwuzhe629.github.io/post/</loc>
-    <lastmod>2018-07-06T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -45,7 +73,7 @@
   
   <url>
     <loc>https://huoyanwuzhe629.github.io/tags/</loc>
-    <lastmod>2018-07-06T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

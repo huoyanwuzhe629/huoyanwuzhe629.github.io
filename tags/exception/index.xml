@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 千阳谷</title>
-    <link>https://huoyanwuzhe629.github.io/post/</link>
-    <description>Recent content in Posts on 千阳谷</description>
+    <title>Exception on 千阳谷</title>
+    <link>https://huoyanwuzhe629.github.io/tags/exception/</link>
+    <description>Recent content in Exception on 千阳谷</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://huoyanwuzhe629.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://huoyanwuzhe629.github.io/tags/exception/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://huoyanwuzhe629.github.io/post/exceptional_handling/</guid>
       <description>好的错误处理 出现错误时能将任务中断在一个合适的位置 比如用户请求服务数据，服务在向其他服务请求或者查数据库时出问题，如果直接停在出问题的地方，</description>
-    </item>
-    
-    <item>
-      <title>移动端自适应实践</title>
-      <link>https://huoyanwuzhe629.github.io/post/mobile-rem-practice/</link>
-      <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://huoyanwuzhe629.github.io/post/mobile-rem-practice/</guid>
-      <description>移动端自适应实践 市面上的方案 流式布局 也就是固定高度，宽度使用百分比的方法，这种方法会导致一些元素在大屏手机上拉伸严重的情况，影响视觉效果，只</description>
     </item>
     
   </channel>
