@@ -26,7 +26,7 @@
       <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://huoyanwuzhe629.github.io/post/reactive-programming/</guid>
-      <description>响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）</description>
+      <description>响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 {{&amp;lt; figure src=&amp;ldquo;/image/example.jpg&amp;rdquo; title=&amp;ldquo;figure image with title&amp;rdquo; &amp;gt;}} 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（</description>
     </item>
     
     <item>

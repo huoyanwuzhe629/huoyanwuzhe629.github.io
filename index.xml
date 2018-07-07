@@ -665,6 +665,8 @@ app.use((err, req, res, next) =&amp;gt; {
 &lt;p&gt;响应式编程就是用异步数据流进行编程&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;{{&amp;lt; figure src=&amp;ldquo;/image/example.jpg&amp;rdquo; title=&amp;ldquo;figure image with title&amp;rdquo; &amp;gt;}}&lt;/p&gt;
+
 &lt;p&gt;即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。&lt;/p&gt;
 
 &lt;p&gt;可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。&lt;/p&gt;
