@@ -30,9 +30,7 @@
       
       <guid>https://huoyanwuzhe629.github.io/post/exceptional_handling/</guid>
       
-        <description>
-
-&lt;h2 id=&#34;好的错误处理&#34;&gt;好的错误处理&lt;/h2&gt;
+        <description>&lt;h2 id=&#34;好的错误处理&#34;&gt;好的错误处理&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;出现错误时能将任务中断在一个合适的位置&lt;/p&gt;
@@ -47,6 +45,8 @@
 &lt;ul&gt;
 &lt;li&gt;通过这些记录能够快速地发现和解决问题&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;坏的错误处理&#34;&gt;坏的错误处理&lt;/h2&gt;
 
@@ -643,8 +643,7 @@ app.use((err, req, res, next) =&amp;gt; {
 
 &lt;h2 id=&#34;未完成&#34;&gt;未完成&lt;/h2&gt;
 
-&lt;p&gt;日志的最佳实践&lt;/p&gt;
-</description>
+&lt;p&gt;日志的最佳实践&lt;/p&gt;</description>
       
     </item>
     
@@ -655,9 +654,7 @@ app.use((err, req, res, next) =&amp;gt; {
       
       <guid>https://huoyanwuzhe629.github.io/post/reactive-programming/</guid>
       
-        <description>
-
-&lt;h1 id=&#34;响应式编程&#34;&gt;响应式编程&lt;/h1&gt;
+        <description>&lt;h1 id=&#34;响应式编程&#34;&gt;响应式编程&lt;/h1&gt;
 
 &lt;h2 id=&#34;什么是响应式编程&#34;&gt;什么是响应式编程&lt;/h2&gt;
 
@@ -665,13 +662,13 @@ app.use((err, req, res, next) =&amp;gt; {
 &lt;p&gt;响应式编程就是用异步数据流进行编程&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;{{&amp;lt; figure src=&amp;ldquo;/image/example.jpg&amp;rdquo; title=&amp;ldquo;figure image with title&amp;rdquo; &amp;gt;}}&lt;/p&gt;
-
 &lt;p&gt;即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。&lt;/p&gt;
 
 &lt;p&gt;可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。&lt;/p&gt;
 
 &lt;p&gt;在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;数据流&#34;&gt;数据流&lt;/h2&gt;
 
@@ -1153,8 +1150,7 @@ push指的是生产者主动推送数据&lt;/p&gt;
 &lt;li&gt;其中的操作集合使用了函数式编程，就是为了保持数据流的不变，减少副作用&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;这是一种面向数据流和变化传播的编程范式，数据更新是相关联的。比如很多时候，在写界面的时候，我们需要对事件做处理，伴随着前端事件的增多，对于事件的处理愈发需要更加方便的处理。&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
       
     </item>
     
@@ -1165,9 +1161,7 @@ push指的是生产者主动推送数据&lt;/p&gt;
       
       <guid>https://huoyanwuzhe629.github.io/post/mobile-rem-practice/</guid>
       
-        <description>
-
-&lt;h2 id=&#34;移动端自适应实践&#34;&gt;移动端自适应实践&lt;/h2&gt;
+        <description>&lt;h2 id=&#34;移动端自适应实践&#34;&gt;移动端自适应实践&lt;/h2&gt;
 
 &lt;h3 id=&#34;市面上的方案&#34;&gt;市面上的方案&lt;/h3&gt;
 
@@ -1200,6 +1194,8 @@ push指的是生产者主动推送数据&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;rem是css3新引入的单位，在pc端会有兼容性的问题，对移动端比较友好。简而言之就是通过动态设置html根元素的fontsize，等比缩放元素大小来自适应移动设备。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;rem方案&#34;&gt;rem方案&lt;/h3&gt;
 
@@ -1551,8 +1547,7 @@ document.documentElement.style.fontSize = clientWidth / 100 + &amp;#39;px&amp;#3
 
 &lt;blockquote&gt;
 &lt;p&gt;rem不是银弹，这个世上也没有银弹，每个方案都有其优点，也有其缺点，学会做出选择和妥协&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;/blockquote&gt;</description>
       
     </item>
     

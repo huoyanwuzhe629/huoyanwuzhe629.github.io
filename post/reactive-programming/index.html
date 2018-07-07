@@ -25,7 +25,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="xiongsheng" />
-  <meta name="description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 {{&amp;lt; figure src=&amp;ldquo;/image/example.jpg&amp;rdquo; title=&amp;ldquo;figure image with title&amp;rdquo; &amp;gt;}} 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（" />
+  <meta name="description" content="响应式编程 什么是响应式编程  响应式编程就是用异步数据流进行编程
+ 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。
+可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。
+在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。
+
+" />
 
   <meta name="keywords" content="blog, Johnson, 千阳" />
 
@@ -58,7 +63,21 @@
 
 
 <meta property="og:title" content="响应式编程入门" />
-<meta property="og:description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 {{&lt; figure src=&ldquo;/image/example.jpg&rdquo; title=&ldquo;figure image with title&rdquo; &gt;}} 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（" />
+<meta property="og:description" content="响应式编程
+
+什么是响应式编程
+
+
+响应式编程就是用异步数据流进行编程
+
+
+即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。
+
+可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。
+
+在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。
+
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://huoyanwuzhe629.github.io/post/reactive-programming/" />
 
@@ -79,19 +98,47 @@
 
 
 <meta itemprop="name" content="响应式编程入门">
-<meta itemprop="description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 {{&lt; figure src=&ldquo;/image/example.jpg&rdquo; title=&ldquo;figure image with title&rdquo; &gt;}} 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（">
+<meta itemprop="description" content="响应式编程
+
+什么是响应式编程
+
+
+响应式编程就是用异步数据流进行编程
+
+
+即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。
+
+可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。
+
+在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。
+
+">
 
 
 <meta itemprop="datePublished" content="2018-07-07T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-07T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="4024">
+<meta itemprop="wordCount" content="4016">
 
 
 
 <meta itemprop="keywords" content="JavaScript,reactive programming," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="响应式编程入门"/>
-<meta name="twitter:description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 {{&lt; figure src=&ldquo;/image/example.jpg&rdquo; title=&ldquo;figure image with title&rdquo; &gt;}} 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（"/>
+<meta name="twitter:description" content="响应式编程
+
+什么是响应式编程
+
+
+响应式编程就是用异步数据流进行编程
+
+
+即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。
+
+可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。
+
+在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。
+
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -294,7 +341,7 @@
               <a href="/categories/reactive-programming/"> reactive programming </a>
             
           </div>
-        <span class="more-meta"> 约 4024 字 </span>
+        <span class="more-meta"> 约 4016 字 </span>
         <span class="more-meta"> 预计阅读 9 分钟 </span>
       </div>
     </header>
@@ -325,9 +372,7 @@
 
     
     <div class="post-content">
-      
-
-<h1 id="响应式编程">响应式编程</h1>
+      <h1 id="响应式编程">响应式编程</h1>
 
 <h2 id="什么是响应式编程">什么是响应式编程</h2>
 
@@ -335,13 +380,13 @@
 <p>响应式编程就是用异步数据流进行编程</p>
 </blockquote>
 
-<p>{{&lt; figure src=&ldquo;/image/example.jpg&rdquo; title=&ldquo;figure image with title&rdquo; &gt;}}</p>
-
 <p>即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。</p>
 
 <p>可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。</p>
 
 <p>在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。</p>
+
+<p></p>
 
 <h2 id="数据流">数据流</h2>
 
@@ -824,7 +869,6 @@ push指的是生产者主动推送数据</p>
 </ul></li>
 <li>这是一种面向数据流和变化传播的编程范式，数据更新是相关联的。比如很多时候，在写界面的时候，我们需要对事件做处理，伴随着前端事件的增多，对于事件的处理愈发需要更加方便的处理。</li>
 </ul>
-
     </div>
 
     
@@ -887,7 +931,7 @@ push指的是生产者主动推送数据</p>
     id: 'reactive programming.md',
     title: '响应式编程入门',
     link: decodeURI(location.href),
-    desc: '响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 {{\x26lt; figure src=\x26ldquo;\/image\/example.jpg\x26rdquo; title=\x26ldquo;figure image with title\x26rdquo; \x26gt;}} 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（',
+    desc: '\x3ch1 id=\x22响应式编程\x22\x3e响应式编程\x3c\/h1\x3e\n\n\x3ch2 id=\x22什么是响应式编程\x22\x3e什么是响应式编程\x3c\/h2\x3e\n\n\x3cblockquote\x3e\n\x3cp\x3e响应式编程就是用异步数据流进行编程\x3c\/p\x3e\n\x3c\/blockquote\x3e\n\n\x3cp\x3e即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。\x3c\/p\x3e\n\n\x3cp\x3e可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。\x3c\/p\x3e\n\n\x3cp\x3e在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。\x3c\/p\x3e\n\n\x3cp\x3e\x3c\/p\x3e',
     owner: 'huoyanwuzhe629',
     repo: 'comments',
     oauth: {
