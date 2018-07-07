@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reactive Programming on 千阳谷</title>
+    <link>https://huoyanwuzhe629.github.io/tags/reactive-programming/</link>
+    <description>Recent content in Reactive Programming on 千阳谷</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://huoyanwuzhe629.github.io/tags/reactive-programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>响应式编程入门</title>
+      <link>https://huoyanwuzhe629.github.io/post/reactive-programming/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/reactive-programming/</guid>
+      <description>响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）</description>
+    </item>
+    
+  </channel>
+</rss>

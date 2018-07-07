@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>响应式编程入门 - 千阳谷</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://huoyanwuzhe629.github.io/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="xiongsheng" />
+  <meta name="description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）" />
+
+  <meta name="keywords" content="blog, Johnson, 千阳" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.42.2" />
+
+
+<link rel="canonical" href="https://huoyanwuzhe629.github.io/post/reactive-programming/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="响应式编程入门" />
+<meta property="og:description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://huoyanwuzhe629.github.io/post/reactive-programming/" />
+
+
+
+<meta property="article:published_time" content="2018-07-07T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-07-07T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="响应式编程入门">
+<meta itemprop="description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）">
+
+
+<meta itemprop="datePublished" content="2018-07-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-07-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="4016">
+
+
+
+<meta itemprop="keywords" content="JavaScript,reactive programming," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="响应式编程入门"/>
+<meta name="twitter:description" content="响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Johnson</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/">
+          Home
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/post/">
+          Archives
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/tags/">
+          Tags
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/categories/">
+          Categories
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/about/">
+          About
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Johnson
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/about/">About</a>
+          
+
+        
+
+      </li>
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">响应式编程入门</h1>
+      
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-07 </span>
+        <div class="post-category">
+            
+              <a href="/categories/reactive-programming/"> reactive programming </a>
+            
+          </div>
+        <span class="more-meta"> 约 4016 字 </span>
+        <span class="more-meta"> 预计阅读 9 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#响应式编程">响应式编程</a>
+<ul>
+<li><a href="#什么是响应式编程">什么是响应式编程</a></li>
+<li><a href="#数据流">数据流</a>
+<ul>
+<li><a href="#仅仅是数组么">仅仅是数组么？</a></li>
+<li><a href="#加入时间">加入时间</a></li>
+<li><a href="#以rxjs的方式来处理问题">以Rxjs的方式来处理问题</a></li>
+</ul></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h1 id="响应式编程">响应式编程</h1>
+
+<h2 id="什么是响应式编程">什么是响应式编程</h2>
+
+<blockquote>
+<p>响应式编程就是用异步数据流进行编程</p>
+</blockquote>
+
+<p>即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）并进行相应操作。</p>
+
+<p>可以基于任何东西创建数据流。流非常轻便，并且无处不在，任何东西都可以是一个流：变量，用户输入，属性，缓存，数据结构等等。例如，想象一下微博推文也可以是一个数据流，和点击事件一样。你可以对其进行侦听，并作相应反应。</p>
+
+<p>在用户界面编程领域以及基于实时系统的动画方面都有广泛的应用。另一方面，在处理嵌套回调的异步事件，复杂的列表过滤和变换的时候也都有良好的表现。</p>
+
+<h2 id="数据流">数据流</h2>
+
+<p>让我们首先来想象一个很常见的交互场景。当用户点击一个页面上的按钮，程序开始在后台执行一些工作（例如从网络获取数据）。在获取数据期间，按钮不能再被点击，而会显示成灰色的”disabled”状态。当加载完成后，页面展现数据，而后按钮又可以再次使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">loading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.load&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">loading</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">$btn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="nx">$btn</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="nx">loading</span><span class="p">);</span>
+  <span class="nx">$btn</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Loading ...&#39;</span><span class="p">);</span>
+
+  <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;https://www.reddit.com/r/cats.json&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">loading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="nx">$btn</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="nx">loading</span><span class="p">);</span>
+      <span class="nx">$btn</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Load&#39;</span><span class="p">);</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#result&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&#34;Got &#34;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s2">&#34; results&#34;</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>用图来描述其中的状态变化过程</p>
+
+<p><img src="/image/reactive_programming_images/clickState.png" alt="Alt text" /></p>
+
+<p>如果用户点击很多次的按钮的话，那么loading的值的变化将是这样的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">loading</span><span class="o">:</span> <span class="kc">false</span> <span class="o">-&gt;</span> <span class="kc">true</span> <span class="o">-&gt;</span> <span class="kc">false</span> <span class="o">-&gt;</span> <span class="kc">true</span> <span class="o">-&gt;</span> <span class="kc">false</span> <span class="o">-&gt;</span> <span class="kc">true</span> <span class="o">-&gt;</span> <span class="p">...</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>loading其实就是应用程序的状态。上面的用箭头组成的示意图仅仅是我们对状态变化的一种展现形式（或者说建模）。然而，我们其实还可以用更加简单的模型来表现它—— 数组。</p>
+
+<h3 id="仅仅是数组么">仅仅是数组么？</h3>
+
+<p>如果说loading变化的过程就是一个数组，那么不妨把它写作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">loadingProcess</span> <span class="o">=</span> <span class="p">[</span><span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">...]</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>按钮的disabled状态的变化过程和loadingProcess的变化过程是一模一样的。我们将disabled的变化过程命名为disabledProcess</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">disabledProcess</span> <span class="o">=</span> <span class="p">[</span><span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">...]</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>根据loadingProcess来获取disabledProcess</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">textProcess</span> <span class="o">=</span> <span class="nx">loadingProcess</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">loading</span> <span class="o">?</span> <span class="s2">&#34;Loading ...&#34;</span> <span class="o">:</span> <span class="s2">&#34;Load&#34;</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>有了disabledProcess和textProcess 来更新ui</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">disabledProcess</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">disabled</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$btn</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="nx">disabled</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">textProcess</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$btn</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>这个变换的过程看起来就像下图</p>
+
+<p><img src="/image/reactive_programming_images/processFlow.png" alt="Alt text" /></p>
+
+<p>但是有个问题，这些状态并不是一开始就全部知道，并且放在数组中的，还有个很重要的元素，时间！</p>
+
+<h3 id="加入时间">加入时间</h3>
+
+<p>回过头来看loadingProcess是如何得出的？当用户触发按钮的点击事件的时候，loadingProcess会被置为false；而当HTTP请求完成的时候，我们将其置为true。在这里，用户触发点击事件，和HTTP请求完成都是一个需要时间的过程。用户的两次点击之间必定要有时间，这样把一个个点击事件放入数组中就十分奇怪</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">clickEventProcess</span> <span class="o">=</span> <span class="p">[</span> <span class="nx">clickEvent</span><span class="p">,</span> <span class="nx">clickEvent</span><span class="p">,</span> <span class="nx">clickEvent</span><span class="p">,</span> <span class="nx">clickEvent</span><span class="p">,</span> <span class="nx">clickEvent</span><span class="p">,</span> <span class="p">...</span> <span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>如果去掉时间因素，上面这种的写法可能就是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 代码A
+</span><span class="c1"></span><span class="nx">clickEventProcess</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">clickEvent</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// ... 
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>而其实我们真正的代码是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 代码B
+</span><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.load&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">clickEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>大家都知道，一个是迭代器模式，一个是观察者模式，而加入时间之后的数组，即clickEventProcess ，可以理解为数据流</p>
+
+<p>##Observable
+迭代器模式和观察者模式本质上是对称的。它们相同的地方在于：</p>
+
+<ul>
+<li>都是对集合的遍历</li>
+<li>每次都只获得一个元素</li>
+</ul>
+
+<p>他们完全相反的地方只有一个：迭代器模式是你主动去要数据，而观察者模式是数据的提供方把数据推给你</p>
+
+<p>我们改写代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// 代码B
+</span><span class="c1"></span><span class="nx">clickEventProcess</span><span class="p">.</span><span class="nx">forEach</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_fn</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span> 
+<span class="p">};</span>
+
+<span class="nx">clickEventProcess</span><span class="p">.</span><span class="nx">onNext</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">clickEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_fn</span><span class="p">(</span><span class="nx">clickEvent</span><span class="p">);</span>  
+<span class="p">};</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.load&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">clickEvent</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">clickEventProcess</span><span class="p">.</span><span class="nx">onNext</span><span class="p">(</span><span class="nx">clickEvent</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">clickEventProcess</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">clickEvent</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// ... 
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<ol>
+<li>接受一个回调函数作为参数，并存储在this._fn里面。这是为了将来在clickEventProcess.onNext里面调用</li>
+<li>当clickEvent触发的时候，调用clickEventProcess.onNext(clickEvent)，将clickEvent传给了clickEventProcess</li>
+<li>clickEventProcess.onNext将clickEvent传给了this._fn，也就是之前我们所存储的回调函数</li>
+<li>回调函数正确地接收到新的点击事件</li>
+</ol>
+
+<p>我们最后获得了一个新的clickEventProcess，它不是一个真正意义上的集合，却被我们抽象成了一个集合，一个被时间所间隔开的集合。 Rx.js，也称作Reactive Extension提供给了抽象出这样集合的能力，它把这种集合命名为Observable（可观察的）</p>
+
+<p>Observable 实际上是应用了观察者模式和迭代器模式的事件或者说消息序列</p>
+
+<p>Observable可以被订阅(subscribe)，随后会将数据push给所有订阅者(subscribers)。</p>
+
+<p>你可能在处理异步操作的时候，会应用到Promise这个技术。那么Observable和Promise相比，又有什么区别呢？</p>
+
+<ul>
+<li>Observable是不可变的，这也是函数式编程的思想。你每次需要获取新的序列的时候，都需要利用函数操作对其做变换，这也避免了无意中修改数据造成的Bug(这点与旭日以前的发布订阅不同，会生成新的数据流)</li>
+<li>我们知道Promise对象一旦生成并触发后，是不可以取消的，而Observable是可以，这也提供了一些灵活性。同时，当你需要共享变量的时候，Observable是可以组合使用的。</li>
+<li>Promise每次只能返回一个值，而Observable可以返回多值。</li>
+</ul>
+
+<p>因为Observable目前还未成为ECMAScript标准，因此有各种它的实现。如RxJS、Rx、XStream、Most.js。RxJS之于Observable，就如同Bluebird之于Promise</p>
+
+<blockquote>
+<p>Observables are lazy Push collections of multiple values.
+They fill the missing spot in the following table:</p>
+
+<p><img src="/image/reactive_programming_images/pullAndPush.png" alt="Alt text" /></p>
+</blockquote>
+
+<p>这里pull指的是消费者主动去获取数据
+push指的是生产者主动推送数据</p>
+
+<h3 id="以rxjs的方式来处理问题">以Rxjs的方式来处理问题</h3>
+
+<p>只需要很简单的一句工厂函数（factory method）就可以将鼠标点击的事件抽象成一个Observable。Rx.js提供一个全局对象Rx，Rx.Observable就是Observable的类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">loadButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.load&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">resultPanel</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">click$</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">fromEvent</span><span class="p">(</span><span class="nx">loadButton</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>click$就是前面的clickEventProcess，点击事件是像下面这样子的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">[</span><span class="nx">click</span> <span class="p">...</span> <span class="nx">click</span> <span class="p">........</span> <span class="nx">click</span> <span class="p">..</span> <span class="nx">click</span> <span class="p">.....</span> <span class="nx">click</span> <span class="p">..........]</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>每个点击事件后应该发起一个网络请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">response$$</span> <span class="o">=</span> <span class="nx">click$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="c1">// 为了不处理跨域问题，这里换了个地址，返回和前面是一样的
+</span><span class="c1"></span>   <span class="k">return</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://output.jsbin.com/tafulo.json&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>Rx.DOM.ajax.get会发起HTTP GET请求，并返回响应（Response）的Observable。因为每次请求只会有一个响应，所以响应的Observable实际上只会有一个元素。它将会是这样的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[...[.....response].......[........response]......[....response]...........[....response]......[....response]]</pre></td></tr></table>
+</div>
+</div>
+<p>由于这是Observable的Observable，就好像二维数组一样，所以在变量名末尾是$$。 若将click$和response$$的对应关系勾勒出来，会更加清晰。
+<img src="/image/reactive_programming_images/clickAndResProcess.png" alt="Alt text" /></p>
+
+<p>然而，我们更希望的是直接获得Response的Observble，而不是Response的Observble的Observble。Rx.js提供了.flatMap方法，可以将二维的Observable“摊平”成一维。
+<img src="/image/reactive_programming_images/flatternProcess.png" alt="Alt text" /></p>
+
+<p>对于每一个click事件，我们都想将loading置为true；而对于每次HTTP请求返回，则置为false。于是，我们可以将click$映射成一个纯粹的只含有true的Observable，但其每个true到达的事件都和点击事件到达的时间一样；对于response$，同样，将其映射呈只含有false的Observable。最后，我们将两个Observable结合在一起（用Rx.Observable.merge），最终就可以形成loading$，也就是刚才我们的loadingProcess。
+此外，$loading还应有一个初始值，可以用startWith方法来指定。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">loading$</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+    <span class="nx">click$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}),</span>
+    <span class="nx">response$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">})</span>
+<span class="p">).</span><span class="nx">startWith</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="/image/reactive_programming_images/clickAndRes&amp;Loading.png" alt="Alt text" /></p>
+
+<p>有了loading$之后，我们很快就能得出刚才我们所想要的textProcess和enabledProcess。enabledProcess和loading$是一致的，就无需再生成，只要生成textProcess即可（命名为text$）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">text$</span> <span class="o">=</span> <span class="nx">loading$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">loading</span> <span class="o">?</span> <span class="s1">&#39;Loading ...&#39;</span> <span class="o">:</span> <span class="s1">&#39;Load&#39;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>在Rx.js中没有forEach方法，但有一个更好名字的方法，和forEach效用一样，叫做subscribe。这样我们就可以更新按钮的样式了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">text$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$loadButton</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">loading$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$loadButton</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="nx">loading</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// response$ 还可以拿来更新#result的内容
+</span><span class="c1"></span><span class="nx">response$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$resultPanel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Got &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">).</span><span class="nx">data</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">&#39; items&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>响应式重构之后的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">$loadButton</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.load&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$resultPanel</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#result&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">click$</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">fromEvent</span><span class="p">(</span><span class="nx">$loadButton</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">response$</span> <span class="o">=</span> <span class="nx">click$</span><span class="p">.</span><span class="nx">flatMap</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 为了不处理跨域问题，这里换了个地址，返回和前面是一样的
+</span><span class="c1"></span>   <span class="k">return</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://output.jsbin.com/tafulo.json&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="kd">var</span> <span class="nx">loading$</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+    <span class="nx">click$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}),</span>
+    <span class="nx">response$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">})</span>
+<span class="p">).</span><span class="nx">startWith</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">text$</span> <span class="o">=</span> <span class="nx">loading$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">loading</span> <span class="o">?</span> <span class="s1">&#39;Loading ...&#39;</span> <span class="o">:</span> <span class="s1">&#39;Load&#39;</span><span class="p">;</span>
+<span class="p">});</span>
+
+
+<span class="nx">text$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$loadButton</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">loading$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$loadButton</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s1">&#39;disabled&#39;</span><span class="p">,</span> <span class="nx">loading</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">response$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$resultPanel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Got &#39;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">).</span><span class="nx">data</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">&#39; items&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>在我们重构后的方案中，消灭了所有的状态。状态都被Observable抽象了出去。于是，这样的代码如果放在一个函数里面，这个函数将是没有副作用的纯函数。</p>
+
+<p>Observable作为对状态的抽象，统一了Iterative和Reactive，淡化了两者之间的边界。当然，最大的好处就是我们用抽象的形式将烦人的状态赶出了视野，取而代之的是可组合的、可变换的Observable。</p>
+
+<blockquote>
+<p>事物之间的对立统一通常很难找到。实际上，即使是在《设计模式》这本书中，作者们也未曾看到迭代器模式和观察者模式之间存在的对称关系。在UI设计领域，我们更多地和用户驱动、通信驱动出来的事件打交道，这才促成了这两个模式的合并。</p>
+</blockquote>
+
+<h2 id="demo">Demo</h2>
+
+<p>具体的api和小demo大家自己参考以下两篇文章，我讲不动了
+<a href="https://github.com/malash/frp-introduction/blob/master/docs/01-observable-and-rxjs.md#observablefromevent">Observable与RxJS</a>
+<a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">The introduction to Reactive Programming you&rsquo;ve been missing</a></p>
+
+<h2 id="总结">总结</h2>
+
+<ul>
+<li>首先要理解响应式编程的思想 =&gt; 万事万物皆为流</li>
+<li>为了较好的管理事件队列，响应式编程组合了观察者模式和迭代器模式，并且提供了操作集合的函数式编程方法
+
+<ul>
+<li>其中的操作集合使用了函数式编程，就是为了保持数据流的不变，减少副作用</li>
+</ul></li>
+<li>这是一种面向数据流和变化传播的编程范式，数据更新是相关联的。比如很多时候，在写界面的时候，我们需要对事件做处理，伴随着前端事件的增多，对于事件的处理愈发需要更加方便的处理。</li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xiongsheng</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-07-07</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/javascript/">JavaScript</a>
+          
+          <a href="/tags/reactive-programming/">reactive programming</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/exceptional_handling/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">nodejs异常处理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/mobile-rem-practice/">
+            <span class="next-text nav-default">移动端自适应实践</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: 'reactive programming.md',
+    title: '响应式编程入门',
+    link: decodeURI(location.href),
+    desc: '响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）',
+    owner: 'huoyanwuzhe629',
+    repo: 'comments',
+    oauth: {
+      client_id: '82c0c71af55c6226bc6b',
+      client_secret: 'c4e33c830095e29488b2d5b0a4c93ab85e3a0765'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:xs0629@aliyun.com" rel="me noopener" class="iconfont icon-email"
+        title="email" target="_blank">
+      </a>
+      <a href="http://github.com/huoyanwuzhe629" rel="me noopener" class="iconfont icon-github"
+        title="github" target="_blank">
+      </a>
+  <a href="https://huoyanwuzhe629.github.io/index.xml" rel="noopener" type="application/rss+xml" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">xiongsheng</span></span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+</body>
+</html>

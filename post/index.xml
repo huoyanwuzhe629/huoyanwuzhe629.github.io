@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>响应式编程入门</title>
+      <link>https://huoyanwuzhe629.github.io/post/reactive-programming/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/reactive-programming/</guid>
+      <description>响应式编程 什么是响应式编程 响应式编程就是用异步数据流进行编程 即使是最典型的点击事件也是一个异步事件流，从而可以对其进行侦测（observe）</description>
+    </item>
+    
+    <item>
       <title>移动端自适应实践</title>
       <link>https://huoyanwuzhe629.github.io/post/mobile-rem-practice/</link>
       <pubDate>Fri, 06 Jul 2018 00:00:00 +0000</pubDate>
