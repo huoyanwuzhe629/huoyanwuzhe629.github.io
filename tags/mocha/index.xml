@@ -17,7 +17,8 @@
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://huoyanwuzhe629.github.io/post/fe-engineering/</guid>
-      <description>前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质</description>
+      <description>&lt;p&gt;前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。
+&lt;/p&gt;</description>
     </item>
     
   </channel>

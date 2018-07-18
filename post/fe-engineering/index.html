@@ -25,7 +25,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="xiongsheng" />
-  <meta name="description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质" />
+  <meta name="description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。 " />
 
   <meta name="keywords" content="blog, Johnson, 千阳" />
 
@@ -58,7 +58,8 @@
 
 
 <meta property="og:title" content="前端工程化之代码规范化及测试规范化" />
-<meta property="og:description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质" />
+<meta property="og:description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://huoyanwuzhe629.github.io/post/fe-engineering/" />
 
@@ -79,19 +80,21 @@
 
 
 <meta itemprop="name" content="前端工程化之代码规范化及测试规范化">
-<meta itemprop="description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质">
+<meta itemprop="description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。
+">
 
 
 <meta itemprop="datePublished" content="2018-07-18T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-18T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="765">
+<meta itemprop="wordCount" content="766">
 
 
 
 <meta itemprop="keywords" content="nodejs,eslint,mocha," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="前端工程化之代码规范化及测试规范化"/>
-<meta name="twitter:description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质"/>
+<meta name="twitter:description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。
+"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -294,7 +297,7 @@
               <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"> 前端工程化 </a>
             
           </div>
-        <span class="more-meta"> 约 765 字 </span>
+        <span class="more-meta"> 约 766 字 </span>
         <span class="more-meta"> 预计阅读 2 分钟 </span>
       </div>
     </header>
@@ -325,9 +328,8 @@
 
     
     <div class="post-content">
-      
-
-<p>前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。</p>
+      <p>前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。
+</p>
 
 <h2 id="代码规范">代码规范</h2>
 
@@ -351,9 +353,9 @@
 <pre class="chroma"> eslint --init</pre></td></tr></table>
 </div>
 </div>
-<p>选择好遵守的规范，配置文件类型（js,json,yaml），会在项目中安装好*eslint*，*eslint-config-airbnb*，*eslint-plugin-import*，<em>eslint-plugin-jsx-a11y</em>, *eslint-plugin-react*等包，*eslint-config-airbnb*是airbnb规范的配置包，*eslint-plugin-react*是react相关规范</p>
+<p>选择好遵守的规范，配置文件类型（js,json,yaml），会在项目中安装好*eslint*，*eslint-config-airbnb*，*eslint-plugin-import*，<em>eslint-plugin-jsx-a11y</em>, *eslint-plugin-react*等包，*eslint-config-airbnb*是airbnb规范的配置包，*eslint-plugin-react*是react相关包。</p>
 
-<p>eslint的配置文件中需要进行配置，以js类型的配置文件*.eslintrc.js*为例</p>
+<p>eslint的配置文件中需要进行配置，以js类型的配置文件*.eslintrc.js*为例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt"> 1
@@ -403,7 +405,6 @@
 <h3 id="mocha">mocha</h3>
 
 <h3 id="istanbul">Istanbul</h3>
-
     </div>
 
     
@@ -476,7 +477,7 @@
     id: 'fe-engineering.md',
     title: '前端工程化之代码规范化及测试规范化',
     link: decodeURI(location.href),
-    desc: '前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质',
+    desc: '\x3cp\x3e前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。\n\x3c\/p\x3e',
     owner: 'huoyanwuzhe629',
     repo: 'comments',
     oauth: {
