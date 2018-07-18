@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://huoyanwuzhe629.github.io/post/fe-engineering/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://huoyanwuzhe629.github.io/post/exceptional_handling/</loc>
     <lastmod>2018-07-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -31,13 +38,14 @@
   </url>
   
   <url>
-    <loc>https://huoyanwuzhe629.github.io/post/fe-engineering/</loc>
+    <loc>https://huoyanwuzhe629.github.io/categories/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://huoyanwuzhe629.github.io/categories/</loc>
+    <loc>https://huoyanwuzhe629.github.io/tags/eslint/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -64,8 +72,22 @@
   </url>
   
   <url>
+    <loc>https://huoyanwuzhe629.github.io/tags/mocha/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://huoyanwuzhe629.github.io/tags/node/</loc>
     <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://huoyanwuzhe629.github.io/tags/nodejs/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -79,7 +101,7 @@
   
   <url>
     <loc>https://huoyanwuzhe629.github.io/post/</loc>
-    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -107,7 +129,14 @@
   
   <url>
     <loc>https://huoyanwuzhe629.github.io/tags/</loc>
-    <lastmod>2018-07-07T00:00:00+00:00</lastmod>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://huoyanwuzhe629.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</loc>
+    <lastmod>2018-07-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

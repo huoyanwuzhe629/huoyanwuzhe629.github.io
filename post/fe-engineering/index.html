@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title> - 千阳谷</title>
+  <title>前端工程化之代码规范化及测试规范化 - 千阳谷</title>
   <link rel="alternate" hreflang="zh-cn" href="https://huoyanwuzhe629.github.io/" />
 
 <meta name="renderer" content="webkit" />
@@ -25,7 +25,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="xiongsheng" />
-  <meta name="description" content="前端工程化之代码规范化及测试规范化 前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，" />
+  <meta name="description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质" />
 
   <meta name="keywords" content="blog, Johnson, 千阳" />
 
@@ -57,13 +57,16 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="前端工程化之代码规范化及测试规范化 前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，" />
+<meta property="og:title" content="前端工程化之代码规范化及测试规范化" />
+<meta property="og:description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://huoyanwuzhe629.github.io/post/fe-engineering/" />
 
 
 
+<meta property="article:published_time" content="2018-07-18T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-07-18T00:00:00&#43;00:00"/>
 
 
 
@@ -75,21 +78,20 @@
 
 
 
+<meta itemprop="name" content="前端工程化之代码规范化及测试规范化">
+<meta itemprop="description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质">
 
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="前端工程化之代码规范化及测试规范化 前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，">
+<meta itemprop="datePublished" content="2018-07-18T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-07-18T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="765">
 
 
 
-<meta itemprop="wordCount" content="782">
-
-
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="nodejs,eslint,mocha," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="前端工程化之代码规范化及测试规范化 前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，"/>
+<meta name="twitter:title" content="前端工程化之代码规范化及测试规范化"/>
+<meta name="twitter:description" content="前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -283,12 +285,16 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">前端工程化之代码规范化及测试规范化</h1>
       
       <div class="post-meta">
-        <span class="post-time"> 0001-01-01 </span>
-        
-        <span class="more-meta"> 约 782 字 </span>
+        <span class="post-time"> 2018-07-18 </span>
+        <div class="post-category">
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"> 前端工程化 </a>
+            
+          </div>
+        <span class="more-meta"> 约 765 字 </span>
         <span class="more-meta"> 预计阅读 2 分钟 </span>
       </div>
     </header>
@@ -300,7 +306,7 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#前端工程化之代码规范化及测试规范化">前端工程化之代码规范化及测试规范化</a>
+<li>
 <ul>
 <li><a href="#代码规范">代码规范</a>
 <ul>
@@ -320,8 +326,6 @@
     
     <div class="post-content">
       
-
-<h1 id="前端工程化之代码规范化及测试规范化">前端工程化之代码规范化及测试规范化</h1>
 
 <p>前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质量，因此，引入代码规范和单元测试就十分必要了。</p>
 
@@ -411,7 +415,7 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">0001-01-01</span>
+    <span class="item-content">2018-07-18</span>
   </p>
   
   <p class="copyright-item">
@@ -437,17 +441,25 @@
 </div>
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          
+          <a href="/tags/nodejs/">nodejs</a>
+          
+          <a href="/tags/eslint/">eslint</a>
+          
+          <a href="/tags/mocha/">mocha</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/mobile-rem-practice/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">移动端自适应实践</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
+          <a class="next" href="/post/exceptional_handling/">
+            <span class="next-text nav-default">nodejs异常处理</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
     
@@ -462,9 +474,9 @@
   <script type="text/javascript">
   const gitment = new Gitment({
     id: 'fe-engineering.md',
-    title: '',
+    title: '前端工程化之代码规范化及测试规范化',
     link: decodeURI(location.href),
-    desc: '前端工程化之代码规范化及测试规范化 前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，',
+    desc: '前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质',
     owner: 'huoyanwuzhe629',
     repo: 'comments',
     oauth: {

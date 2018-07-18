@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端工程化 on 千阳谷</title>
+    <link>https://huoyanwuzhe629.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</link>
+    <description>Recent content in 前端工程化 on 千阳谷</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 18 Jul 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://huoyanwuzhe629.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>前端工程化之代码规范化及测试规范化</title>
+      <link>https://huoyanwuzhe629.github.io/post/fe-engineering/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/fe-engineering/</guid>
+      <description>前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，这就需要项目代码保持稳定的规范和质</description>
+    </item>
+    
+  </channel>
+</rss>
