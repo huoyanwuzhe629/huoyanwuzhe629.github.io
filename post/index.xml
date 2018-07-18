@@ -66,5 +66,14 @@
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://huoyanwuzhe629.github.io/post/fe-engineering/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/fe-engineering/</guid>
+      <description>前端工程化之代码规范化及测试规范化 前端开发项目工程复杂度越来越高，需要用一些规范来保证经手开发人员较多之后，扔能保证相当的可维护性与稳定性，</description>
+    </item>
+    
   </channel>
 </rss>
