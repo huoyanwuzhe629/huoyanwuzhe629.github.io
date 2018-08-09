@@ -30,11 +30,10 @@
       
       <guid>https://huoyanwuzhe629.github.io/post/unittesting/</guid>
       
-        <description>
+        <description>&lt;h2 id=&#34;为什么需要单元测试&#34;&gt;为什么需要单元测试&lt;/h2&gt;
 
-&lt;h2 id=&#34;为什么需要单元测试&#34;&gt;为什么需要单元测试&lt;/h2&gt;
-
-&lt;p&gt;代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们完善自己的代码。&lt;/p&gt;
+&lt;p&gt;代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们完善自己的代码。
+&lt;/p&gt;
 
 &lt;p&gt;所谓单元测试，就是对于某个函数或者API进行正确性测试，比如：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -553,8 +552,7 @@ node_js:
 &lt;li&gt;测试私有方法：rewire&lt;/li&gt;
 &lt;li&gt;web测试：supertest&lt;/li&gt;
 &lt;li&gt;持续集成：Travis-cli&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
       
     </item>
     

@@ -17,7 +17,10 @@
       <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>https://huoyanwuzhe629.github.io/post/unittesting/</guid>
-      <description>为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们</description>
+      <description>&lt;h2 id=&#34;为什么需要单元测试&#34;&gt;为什么需要单元测试&lt;/h2&gt;
+
+&lt;p&gt;代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们完善自己的代码。
+&lt;/p&gt;</description>
     </item>
     
   </channel>
