@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>单元测试 on 千阳谷</title>
+    <link>https://huoyanwuzhe629.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 单元测试 on 千阳谷</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 09 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://huoyanwuzhe629.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>nodejs单元测试</title>
+      <link>https://huoyanwuzhe629.github.io/post/unittesting/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/unittesting/</guid>
+      <description>为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们</description>
+    </item>
+    
+  </channel>
+</rss>

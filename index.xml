@@ -24,6 +24,541 @@
     </item>
     
     <item>
+      <title>nodejs单元测试</title>
+      <link>https://huoyanwuzhe629.github.io/post/unittesting/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/unittesting/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;为什么需要单元测试&#34;&gt;为什么需要单元测试&lt;/h2&gt;
+
+&lt;p&gt;代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们完善自己的代码。&lt;/p&gt;
+
+&lt;p&gt;所谓单元测试，就是对于某个函数或者API进行正确性测试，比如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;	function add(a,b) {
+		return a + b;
+	}
+	
+	&amp;gt; add = function(a, b){return a + b}
+		[Function: add]
+	&amp;gt; add(1)
+	NaN&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;当add函数仅给定一个参数1的时候，a为1，b为undefined，两者相加为NaN。&lt;/p&gt;
+
+&lt;p&gt;这时候问题来了：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;你考虑过只有一个参数的情形么？&lt;/li&gt;
+&lt;li&gt;一个参数时，返回的NAN是你要的么？&lt;/li&gt;
+&lt;li&gt;如果参数的类型有没有要求？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这时候就需要加单元测试来验证各种可能性&lt;/p&gt;
+
+&lt;p&gt;写代码的时候容易陷入思维漏洞，而在写测试用例时，容易考虑到各种情况，而且就算暂时没有考虑到，过后加入测试用例，以方便后续的维护，降低修改代码的风险&lt;/p&gt;
+
+&lt;p&gt;意义：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;验证代码的正确性&lt;/li&gt;
+&lt;li&gt;避免修改代码时出错&lt;/li&gt;
+&lt;li&gt;避免其他团队成员修改代码时出错&lt;/li&gt;
+&lt;li&gt;便于自动化测试和部署&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;测试方法&#34;&gt;测试方法&lt;/h2&gt;
+
+&lt;h3 id=&#34;测试框架&#34;&gt;测试框架&lt;/h3&gt;
+
+&lt;p&gt;这里推荐使用Mocha，Mocha是一个功能丰富的Javascript测试框架，它能运行在Node.js和浏览器中，支持BDD、TDD、QUnit、Exports式的测试。这里以BDD为例为大家做示例。&lt;/p&gt;
+
+&lt;h4 id=&#34;安装&#34;&gt;安装&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;npm install mocha -g&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;编写业务代码&#34;&gt;编写业务代码&lt;/h4&gt;
+
+&lt;p&gt;简单的返回绝对值的方法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;exports.absoluteValue = function (num) {
+  if (num &amp;lt; 0) {
+    return 0-num;
+  }
+  return num;
+};&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;编写测试脚本&#34;&gt;编写测试脚本&lt;/h4&gt;
+
+&lt;p&gt;在目录新建test文件夹，存放所有测试用例文件，新建index.test.js,后缀名需要为&lt;em&gt;.test.js&lt;/em&gt;(表示测试)或者*.spec.js*（表示规格）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// index.test.js
+var lib = require(&amp;#39;../index&amp;#39;);
+
+describe(&amp;#39;绝对值函数的测试&amp;#39;, function () {
+  describe(&amp;#39;absoluteValue&amp;#39;, function () {
+    it(&amp;#39;方法能运行&amp;#39;, function () {
+      lib.absoluteValue(10);
+    });
+  });
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中describe块称为&amp;rdquo;测试套件&amp;rdquo;（test suite），表示一组相关的测试。它是一个函数，第一个参数是测试套件的名称（&amp;rdquo;绝对值函数的测试&amp;rdquo;），第二个参数是一个实际执行的函数。&lt;/p&gt;
+
+&lt;p&gt;it块称为&amp;rdquo;测试用例&amp;rdquo;（test case），表示一个单独的测试，是测试的最小单位。它也是一个函数，第一个参数是测试用例的名称（&amp;rdquo;方法能运行&amp;rdquo;），第二个参数是一个实际执行的函数。&lt;/p&gt;
+
+&lt;p&gt;测试脚本里面应该包括一个或多个describe块，每个describe块应该包括一个或多个it块。
+Mocha的作用是运行测试脚本。但这只是运行了代码，并没有对结果进行检查。&lt;/p&gt;
+
+&lt;h4 id=&#34;断言库&#34;&gt;断言库&lt;/h4&gt;
+
+&lt;p&gt;对代码进行检查的话，就需要用到断言库了，nodejs常用断言库有：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;should.js&lt;/li&gt;
+&lt;li&gt;expect.js&lt;/li&gt;
+&lt;li&gt;chai&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这里以should为例&lt;/p&gt;
+
+&lt;h5 id=&#34;加上断言&#34;&gt;加上断言&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;it(&amp;#39;10的绝对值等于-10的绝对值&amp;#39;, function () {
+	lib.absoluteValue(-10).should.be.equal(lib.absoluteValue(10))
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;后续维护&#34;&gt;后续维护&lt;/h4&gt;
+
+&lt;p&gt;后续在整个项目的迭代过程中，只要这个用例能正确执行，就能保证你的改动没有对你原有的功能造成破坏，这时候你只要为你的新需求编写新的测试用例即可，这就是测试用例的价值所在。&lt;/p&gt;
+
+&lt;h4 id=&#34;异步测试&#34;&gt;异步测试&lt;/h4&gt;
+
+&lt;p&gt;在为服务的项目写测试用例时，需要测试异步回调的情况&lt;/p&gt;
+
+&lt;p&gt;Mocha默认每个测试用例最多执行2000毫秒，如果到时没有得到结果，就报错。对于涉及异步操作的测试用例，这个时间往往是不够的，需要用-t或&amp;ndash;timeout参数指定超时门槛，或者使用api式，this.timeout(2000)来设置超时时间&lt;/p&gt;
+
+&lt;p&gt;编写异步代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;exports.async = function (callback) {
+  setTimeout(function () {
+    callback(10);
+  }, 10);
+};&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;测试异步代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;describe(&amp;#39;异步回调的测试&amp;#39;, function () {
+  it(&amp;#39;回调的参数为10&amp;#39;, function (done) {
+    lib.async(function (result) {
+      result.should.be.equal(10);
+      done();
+    });
+  });
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;上面的测试用例里面，有一个done函数。it块执行的时候，传入一个done参数，当测试结束的时候，必须显式调用这个函数，告诉Mocha测试结束了。否则，Mocha就无法知道，测试是否结束，会一直等到超时报错。&lt;/p&gt;
+
+&lt;h4 id=&#34;测试promise&#34;&gt;测试promise&lt;/h4&gt;
+
+&lt;p&gt;使用should提供的promise断言接口&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;finally | eventually&lt;/li&gt;
+&lt;li&gt;fulfilled&lt;/li&gt;
+&lt;li&gt;fulfilledWith&lt;/li&gt;
+&lt;li&gt;rejected&lt;/li&gt;
+&lt;li&gt;rejectedWith&lt;/li&gt;
+&lt;li&gt;then&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;直接上测试代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;describe(&amp;#39;promise测试&amp;#39;, function () {
+  it(&amp;#39;should.reject&amp;#39;, function () {
+    (new Promise(function (resolve, reject) {
+      reject(new Error(&amp;#39;wrong&amp;#39;));
+    })).should.be.rejectedWith(&amp;#39;wrong&amp;#39;);
+  });
+
+  it(&amp;#39;should.fulfilled&amp;#39;, function () {
+    (new Promise(function (resolve, reject) {
+      resolve({ username: &amp;#39;jc&amp;#39;, age: 18, gender: &amp;#39;male&amp;#39; })
+    })).should.be.fulfilled().then(function (it) {
+      it.should.have.property(&amp;#39;username&amp;#39;, &amp;#39;jc&amp;#39;);
+    })
+  });
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;异常测试&#34;&gt;异常测试&lt;/h4&gt;
+
+&lt;p&gt;在开发web项目时，我们可能对异常不太重视，而开发node服务时，我们需要对异常进行处理，所以针对异常的测试就十分必要了&lt;/p&gt;
+
+&lt;p&gt;下面有一个*getContent*方法，他会读取指定文件的内容，但是不一定成功，会抛出异常&lt;/p&gt;
+
+&lt;p&gt;我们去人为的制造读取失败的情况有点太麻烦了，这时候应该模拟错误环境&lt;/p&gt;
+
+&lt;p&gt;手写mock&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;describe(&amp;#34;getContent&amp;#34;, function () {
+  var _readFile;
+  before(function () {
+    _readFile = fs.readFile;
+    fs.readFile = function (filename, encoding, callback) {
+      process.nextTick(function () {
+        callback(new Error(&amp;#34;mock readFile error&amp;#34;));
+      });
+    };
+  });
+  // it();
+  after(function () {
+    // 用完之后记得还原。否则影响其他case
+    fs.readFile = _readFile;
+  })
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;上面先把fs.readFile这个方法替换成一个必然会报错的fuction，执行完测试用例，再还原，很巧妙，但是稍显麻烦&lt;/p&gt;
+
+&lt;p&gt;Mock库：muk
+优美点的写法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;var fs = require(&amp;#39;fs&amp;#39;);
+var muk = require(&amp;#39;muk&amp;#39;);
+
+before(function () {
+  muk(fs, &amp;#39;readFile&amp;#39;, function(path, encoding, callback) {
+    process.nextTick(function () {
+      callback(new Error(&amp;#34;mock readFile error&amp;#34;));
+    });
+  });
+});
+// it();
+after(function () {
+  muk.restore();
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;原理是一样的，只是封装了下&lt;/p&gt;
+
+&lt;h4 id=&#34;测试私有方法&#34;&gt;测试私有方法&lt;/h4&gt;
+
+&lt;p&gt;有些方法是私有方法，测试脚本不能把他们导出来进行测试,我不可能为了测试临时export出来，完事再改回去&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;function _adding(num1, num2) {
+  return num1 + num2;
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;我们可以通过rewire模块把这个方法在测试代码中导出来&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;describe(&amp;#39;私有模块测试&amp;#39;, function () {
+  it(&amp;#39;limit should return success&amp;#39;, function () {
+    var lib = rewire(&amp;#39;../index.js&amp;#39;);
+    var add = lib.__get__(&amp;#39;_adding&amp;#39;);
+    add(10,2);
+  });
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;测试web应用&#34;&gt;测试web应用&lt;/h4&gt;
+
+&lt;p&gt;开发web项目时，需要测某个api，比如：&lt;em&gt;/getUser.action&lt;/em&gt;
+可以使用*supertest*模块来处理这种需求：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;var express = require(&amp;#34;express&amp;#34;);
+var request = require(&amp;#34;supertest&amp;#34;);
+var app = express();
+
+// 定义路由
+app.get(&amp;#39;/getUser.action&amp;#39;, function(req, res){
+  res.send(200, { name: &amp;#39;xs&amp;#39; });
+});
+
+describe(&amp;#39;GET /getUser.action&amp;#39;, function(){
+  it(&amp;#39;respond with json&amp;#39;, function(done){
+    request(app)
+      .get(&amp;#39;/user&amp;#39;)
+      .set(&amp;#39;Accept&amp;#39;, &amp;#39;application/json&amp;#39;)
+      .expect(&amp;#39;Content-Type&amp;#39;, /json/)
+      .expect(200)
+      .end(function (err, res) {
+        if (err){
+          done(err);
+        }
+        res.body.name.should.be.equal(&amp;#39;xs&amp;#39;);
+        done();
+      })
+  });
+});&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;覆盖率&#34;&gt;覆盖率&lt;/h4&gt;
+
+&lt;p&gt;虽然我们可能写了不少测试用例，但是是否覆盖了所有的代码呢？这个指标就叫做*代码覆盖率*，有四个测量维度：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;行覆盖率：执行了多少行&lt;/li&gt;
+&lt;li&gt;函数覆盖率：执行了多少函数&lt;/li&gt;
+&lt;li&gt;分支覆盖率：是否每个if代码块都执行了&lt;/li&gt;
+&lt;li&gt;语句覆盖率：每个语句都执行了么&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们使用*istanbul*来测试代码覆盖率&lt;/p&gt;
+
+&lt;p&gt;安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;$ npm install -g istanbul&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;编写完测试用例之后，执行命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;istanbul cover _mocha&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;也可以编写npm scripts来执行，这样就不用全局安装*istanbul*了
+控制台会显示测试情况以及代码覆盖率情况，就是上面说的4个指标&lt;/p&gt;
+
+&lt;p&gt;同时，还会生成一个*coverage*子目录，其中的*coverage.json*文件包含覆盖率的原始数据，*coverage/lcov-report*是可以在浏览器打开的覆盖率报告，其中有详细信息，可以查看代码的执行情况。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是，上面执行cover后面跟的是*_mocha*，而不是*mocha*，因为这是两个指令，前者是在当前进程（即istanbul所在的进程）执行测试，后者是另起一个进程，只有在同一个进程，istanbul才能捕捉代码执行情况。&lt;/p&gt;
+
+&lt;p&gt;如果需要往*mocha*中传入参数，在后面加上”&amp;ndash;“即可，否则会当成*istanbul*的参数&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;$ istanbul cover _mocha -- tests/test.sqrt.js -R spec&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h4 id=&#34;持续集成&#34;&gt;持续集成&lt;/h4&gt;
+
+&lt;p&gt;一些大型的开源项目可能需要引入持续集成，在push代码之后自动执行test脚本，通过则build-passing，否则build-failing&lt;/p&gt;
+
+&lt;p&gt;使用&lt;a href=&#34;https://travis-ci.org/&#34;&gt;Travis-cli&lt;/a&gt;，有以下几步：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;绑定Github账号&lt;/li&gt;
+&lt;li&gt;在Github仓库的Admin打开Services hook&lt;/li&gt;
+&lt;li&gt;打开Travis&lt;/li&gt;
+&lt;li&gt;每次push将会hook触发执行npm test命令&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;需要在根目录下加入*.travis.yml*文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;language: node_js
+node_js:
+  - &amp;#34;8.9.0&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;没有此文件的话会默认视为*ruby*项目&lt;/p&gt;
+
+&lt;h2 id=&#34;单元测试度的把握&#34;&gt;单元测试度的把握&lt;/h2&gt;
+
+&lt;p&gt;进行单元测试的过程中，很难把控“度”，测试范围太小，有点没有必要，测试范围太大，会涉及别人的工作内容，面面俱到工作量太大，以点概面又容易忽略问题，所有团队内需要一份通用的&lt;a href=&#34;https://petroware.no/unittesting.html&#34;&gt;单元测试准则&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;框架：mocha&lt;/li&gt;
+&lt;li&gt;断言库：should.js、expect.js、chai&lt;/li&gt;
+&lt;li&gt;覆盖率：istanbul、jscover、blanket&lt;/li&gt;
+&lt;li&gt;mock库：muk&lt;/li&gt;
+&lt;li&gt;测试私有方法：rewire&lt;/li&gt;
+&lt;li&gt;web测试：supertest&lt;/li&gt;
+&lt;li&gt;持续集成：Travis-cli&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>前端工程化之代码规范化及测试规范化</title>
       <link>https://huoyanwuzhe629.github.io/post/fe-engineering/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>

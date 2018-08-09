@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>nodejs单元测试 - 千阳谷</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://huoyanwuzhe629.github.io/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="xiongsheng" />
+  <meta name="description" content="为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们" />
+
+  <meta name="keywords" content="blog, Johnson, 千阳" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.42.2" />
+
+
+<link rel="canonical" href="https://huoyanwuzhe629.github.io/post/unittesting/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="nodejs单元测试" />
+<meta property="og:description" content="为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://huoyanwuzhe629.github.io/post/unittesting/" />
+
+
+
+<meta property="article:published_time" content="2018-08-09T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-08-09T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="nodejs单元测试">
+<meta itemprop="description" content="为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们">
+
+
+<meta itemprop="datePublished" content="2018-08-09T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-09T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="3285">
+
+
+
+<meta itemprop="keywords" content="nodejs,单元测试," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="nodejs单元测试"/>
+<meta name="twitter:description" content="为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Johnson</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/">
+          Home
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/post/">
+          Archives
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/tags/">
+          Tags
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/categories/">
+          Categories
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://huoyanwuzhe629.github.io/about/">
+          About
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Johnson
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/">Home</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://huoyanwuzhe629.github.io/about/">About</a>
+          
+
+        
+
+      </li>
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">nodejs单元测试</h1>
+      
+      <div class="post-meta">
+        <span class="post-time"> 2018-08-09 </span>
+        <div class="post-category">
+            
+              <a href="/categories/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"> 单元测试 </a>
+            
+          </div>
+        <span class="more-meta"> 约 3285 字 </span>
+        <span class="more-meta"> 预计阅读 7 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#为什么需要单元测试">为什么需要单元测试</a></li>
+<li><a href="#测试方法">测试方法</a>
+<ul>
+<li><a href="#测试框架">测试框架</a>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#编写业务代码">编写业务代码</a></li>
+<li><a href="#编写测试脚本">编写测试脚本</a></li>
+<li><a href="#断言库">断言库</a>
+<ul>
+<li><a href="#加上断言">加上断言</a></li>
+</ul></li>
+<li><a href="#后续维护">后续维护</a></li>
+<li><a href="#异步测试">异步测试</a></li>
+<li><a href="#测试promise">测试promise</a></li>
+<li><a href="#异常测试">异常测试</a></li>
+<li><a href="#测试私有方法">测试私有方法</a></li>
+<li><a href="#测试web应用">测试web应用</a></li>
+<li><a href="#覆盖率">覆盖率</a></li>
+<li><a href="#持续集成">持续集成</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#单元测试度的把握">单元测试度的把握</a></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="为什么需要单元测试">为什么需要单元测试</h2>
+
+<p>代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们完善自己的代码。</p>
+
+<p>所谓单元测试，就是对于某个函数或者API进行正确性测试，比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">	function add(a,b) {
+		return a + b;
+	}
+	
+	&gt; add = function(a, b){return a + b}
+		[Function: add]
+	&gt; add(1)
+	NaN</pre></td></tr></table>
+</div>
+</div>
+<p>当add函数仅给定一个参数1的时候，a为1，b为undefined，两者相加为NaN。</p>
+
+<p>这时候问题来了：</p>
+
+<ul>
+<li>你考虑过只有一个参数的情形么？</li>
+<li>一个参数时，返回的NAN是你要的么？</li>
+<li>如果参数的类型有没有要求？</li>
+</ul>
+
+<p>这时候就需要加单元测试来验证各种可能性</p>
+
+<p>写代码的时候容易陷入思维漏洞，而在写测试用例时，容易考虑到各种情况，而且就算暂时没有考虑到，过后加入测试用例，以方便后续的维护，降低修改代码的风险</p>
+
+<p>意义：</p>
+
+<ul>
+<li>验证代码的正确性</li>
+<li>避免修改代码时出错</li>
+<li>避免其他团队成员修改代码时出错</li>
+<li>便于自动化测试和部署</li>
+</ul>
+
+<h2 id="测试方法">测试方法</h2>
+
+<h3 id="测试框架">测试框架</h3>
+
+<p>这里推荐使用Mocha，Mocha是一个功能丰富的Javascript测试框架，它能运行在Node.js和浏览器中，支持BDD、TDD、QUnit、Exports式的测试。这里以BDD为例为大家做示例。</p>
+
+<h4 id="安装">安装</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">npm install mocha -g</pre></td></tr></table>
+</div>
+</div>
+<h4 id="编写业务代码">编写业务代码</h4>
+
+<p>简单的返回绝对值的方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">exports.absoluteValue = function (num) {
+  if (num &lt; 0) {
+    return 0-num;
+  }
+  return num;
+};</pre></td></tr></table>
+</div>
+</div>
+<h4 id="编写测试脚本">编写测试脚本</h4>
+
+<p>在目录新建test文件夹，存放所有测试用例文件，新建index.test.js,后缀名需要为<em>.test.js</em>(表示测试)或者*.spec.js*（表示规格）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// index.test.js
+var lib = require(&#39;../index&#39;);
+
+describe(&#39;绝对值函数的测试&#39;, function () {
+  describe(&#39;absoluteValue&#39;, function () {
+    it(&#39;方法能运行&#39;, function () {
+      lib.absoluteValue(10);
+    });
+  });
+});</pre></td></tr></table>
+</div>
+</div>
+<p>其中describe块称为&rdquo;测试套件&rdquo;（test suite），表示一组相关的测试。它是一个函数，第一个参数是测试套件的名称（&rdquo;绝对值函数的测试&rdquo;），第二个参数是一个实际执行的函数。</p>
+
+<p>it块称为&rdquo;测试用例&rdquo;（test case），表示一个单独的测试，是测试的最小单位。它也是一个函数，第一个参数是测试用例的名称（&rdquo;方法能运行&rdquo;），第二个参数是一个实际执行的函数。</p>
+
+<p>测试脚本里面应该包括一个或多个describe块，每个describe块应该包括一个或多个it块。
+Mocha的作用是运行测试脚本。但这只是运行了代码，并没有对结果进行检查。</p>
+
+<h4 id="断言库">断言库</h4>
+
+<p>对代码进行检查的话，就需要用到断言库了，nodejs常用断言库有：</p>
+
+<ul>
+<li>should.js</li>
+<li>expect.js</li>
+<li>chai</li>
+</ul>
+
+<p>这里以should为例</p>
+
+<h5 id="加上断言">加上断言</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">it(&#39;10的绝对值等于-10的绝对值&#39;, function () {
+	lib.absoluteValue(-10).should.be.equal(lib.absoluteValue(10))
+});</pre></td></tr></table>
+</div>
+</div>
+<h4 id="后续维护">后续维护</h4>
+
+<p>后续在整个项目的迭代过程中，只要这个用例能正确执行，就能保证你的改动没有对你原有的功能造成破坏，这时候你只要为你的新需求编写新的测试用例即可，这就是测试用例的价值所在。</p>
+
+<h4 id="异步测试">异步测试</h4>
+
+<p>在为服务的项目写测试用例时，需要测试异步回调的情况</p>
+
+<p>Mocha默认每个测试用例最多执行2000毫秒，如果到时没有得到结果，就报错。对于涉及异步操作的测试用例，这个时间往往是不够的，需要用-t或&ndash;timeout参数指定超时门槛，或者使用api式，this.timeout(2000)来设置超时时间</p>
+
+<p>编写异步代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">exports.async = function (callback) {
+  setTimeout(function () {
+    callback(10);
+  }, 10);
+};</pre></td></tr></table>
+</div>
+</div>
+<p>测试异步代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">describe(&#39;异步回调的测试&#39;, function () {
+  it(&#39;回调的参数为10&#39;, function (done) {
+    lib.async(function (result) {
+      result.should.be.equal(10);
+      done();
+    });
+  });
+});</pre></td></tr></table>
+</div>
+</div>
+<p>上面的测试用例里面，有一个done函数。it块执行的时候，传入一个done参数，当测试结束的时候，必须显式调用这个函数，告诉Mocha测试结束了。否则，Mocha就无法知道，测试是否结束，会一直等到超时报错。</p>
+
+<h4 id="测试promise">测试promise</h4>
+
+<p>使用should提供的promise断言接口</p>
+
+<ul>
+<li>finally | eventually</li>
+<li>fulfilled</li>
+<li>fulfilledWith</li>
+<li>rejected</li>
+<li>rejectedWith</li>
+<li>then</li>
+</ul>
+
+<p>直接上测试代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">describe(&#39;promise测试&#39;, function () {
+  it(&#39;should.reject&#39;, function () {
+    (new Promise(function (resolve, reject) {
+      reject(new Error(&#39;wrong&#39;));
+    })).should.be.rejectedWith(&#39;wrong&#39;);
+  });
+
+  it(&#39;should.fulfilled&#39;, function () {
+    (new Promise(function (resolve, reject) {
+      resolve({ username: &#39;jc&#39;, age: 18, gender: &#39;male&#39; })
+    })).should.be.fulfilled().then(function (it) {
+      it.should.have.property(&#39;username&#39;, &#39;jc&#39;);
+    })
+  });
+});</pre></td></tr></table>
+</div>
+</div>
+<h4 id="异常测试">异常测试</h4>
+
+<p>在开发web项目时，我们可能对异常不太重视，而开发node服务时，我们需要对异常进行处理，所以针对异常的测试就十分必要了</p>
+
+<p>下面有一个*getContent*方法，他会读取指定文件的内容，但是不一定成功，会抛出异常</p>
+
+<p>我们去人为的制造读取失败的情况有点太麻烦了，这时候应该模拟错误环境</p>
+
+<p>手写mock</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">describe(&#34;getContent&#34;, function () {
+  var _readFile;
+  before(function () {
+    _readFile = fs.readFile;
+    fs.readFile = function (filename, encoding, callback) {
+      process.nextTick(function () {
+        callback(new Error(&#34;mock readFile error&#34;));
+      });
+    };
+  });
+  // it();
+  after(function () {
+    // 用完之后记得还原。否则影响其他case
+    fs.readFile = _readFile;
+  })
+});</pre></td></tr></table>
+</div>
+</div>
+<p>上面先把fs.readFile这个方法替换成一个必然会报错的fuction，执行完测试用例，再还原，很巧妙，但是稍显麻烦</p>
+
+<p>Mock库：muk
+优美点的写法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">var fs = require(&#39;fs&#39;);
+var muk = require(&#39;muk&#39;);
+
+before(function () {
+  muk(fs, &#39;readFile&#39;, function(path, encoding, callback) {
+    process.nextTick(function () {
+      callback(new Error(&#34;mock readFile error&#34;));
+    });
+  });
+});
+// it();
+after(function () {
+  muk.restore();
+});</pre></td></tr></table>
+</div>
+</div>
+<p>原理是一样的，只是封装了下</p>
+
+<h4 id="测试私有方法">测试私有方法</h4>
+
+<p>有些方法是私有方法，测试脚本不能把他们导出来进行测试,我不可能为了测试临时export出来，完事再改回去</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">function _adding(num1, num2) {
+  return num1 + num2;
+}</pre></td></tr></table>
+</div>
+</div>
+<p>我们可以通过rewire模块把这个方法在测试代码中导出来</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">describe(&#39;私有模块测试&#39;, function () {
+  it(&#39;limit should return success&#39;, function () {
+    var lib = rewire(&#39;../index.js&#39;);
+    var add = lib.__get__(&#39;_adding&#39;);
+    add(10,2);
+  });
+});</pre></td></tr></table>
+</div>
+</div>
+<h4 id="测试web应用">测试web应用</h4>
+
+<p>开发web项目时，需要测某个api，比如：<em>/getUser.action</em>
+可以使用*supertest*模块来处理这种需求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">var express = require(&#34;express&#34;);
+var request = require(&#34;supertest&#34;);
+var app = express();
+
+// 定义路由
+app.get(&#39;/getUser.action&#39;, function(req, res){
+  res.send(200, { name: &#39;xs&#39; });
+});
+
+describe(&#39;GET /getUser.action&#39;, function(){
+  it(&#39;respond with json&#39;, function(done){
+    request(app)
+      .get(&#39;/user&#39;)
+      .set(&#39;Accept&#39;, &#39;application/json&#39;)
+      .expect(&#39;Content-Type&#39;, /json/)
+      .expect(200)
+      .end(function (err, res) {
+        if (err){
+          done(err);
+        }
+        res.body.name.should.be.equal(&#39;xs&#39;);
+        done();
+      })
+  });
+});</pre></td></tr></table>
+</div>
+</div>
+<h4 id="覆盖率">覆盖率</h4>
+
+<p>虽然我们可能写了不少测试用例，但是是否覆盖了所有的代码呢？这个指标就叫做*代码覆盖率*，有四个测量维度：</p>
+
+<ul>
+<li>行覆盖率：执行了多少行</li>
+<li>函数覆盖率：执行了多少函数</li>
+<li>分支覆盖率：是否每个if代码块都执行了</li>
+<li>语句覆盖率：每个语句都执行了么</li>
+</ul>
+
+<p>我们使用*istanbul*来测试代码覆盖率</p>
+
+<p>安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ npm install -g istanbul</pre></td></tr></table>
+</div>
+</div>
+<p>编写完测试用例之后，执行命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">istanbul cover _mocha</pre></td></tr></table>
+</div>
+</div>
+<p>也可以编写npm scripts来执行，这样就不用全局安装*istanbul*了
+控制台会显示测试情况以及代码覆盖率情况，就是上面说的4个指标</p>
+
+<p>同时，还会生成一个*coverage*子目录，其中的*coverage.json*文件包含覆盖率的原始数据，*coverage/lcov-report*是可以在浏览器打开的覆盖率报告，其中有详细信息，可以查看代码的执行情况。</p>
+
+<p>需要注意的是，上面执行cover后面跟的是*_mocha*，而不是*mocha*，因为这是两个指令，前者是在当前进程（即istanbul所在的进程）执行测试，后者是另起一个进程，只有在同一个进程，istanbul才能捕捉代码执行情况。</p>
+
+<p>如果需要往*mocha*中传入参数，在后面加上”&ndash;“即可，否则会当成*istanbul*的参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ istanbul cover _mocha -- tests/test.sqrt.js -R spec</pre></td></tr></table>
+</div>
+</div>
+<h4 id="持续集成">持续集成</h4>
+
+<p>一些大型的开源项目可能需要引入持续集成，在push代码之后自动执行test脚本，通过则build-passing，否则build-failing</p>
+
+<p>使用<a href="https://travis-ci.org/">Travis-cli</a>，有以下几步：</p>
+
+<ul>
+<li>绑定Github账号</li>
+<li>在Github仓库的Admin打开Services hook</li>
+<li>打开Travis</li>
+<li>每次push将会hook触发执行npm test命令</li>
+</ul>
+
+<p>需要在根目录下加入*.travis.yml*文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">language: node_js
+node_js:
+  - &#34;8.9.0&#34;</pre></td></tr></table>
+</div>
+</div>
+<p>没有此文件的话会默认视为*ruby*项目</p>
+
+<h2 id="单元测试度的把握">单元测试度的把握</h2>
+
+<p>进行单元测试的过程中，很难把控“度”，测试范围太小，有点没有必要，测试范围太大，会涉及别人的工作内容，面面俱到工作量太大，以点概面又容易忽略问题，所有团队内需要一份通用的<a href="https://petroware.no/unittesting.html">单元测试准则</a></p>
+
+<h2 id="总结">总结</h2>
+
+<ul>
+<li>框架：mocha</li>
+<li>断言库：should.js、expect.js、chai</li>
+<li>覆盖率：istanbul、jscover、blanket</li>
+<li>mock库：muk</li>
+<li>测试私有方法：rewire</li>
+<li>web测试：supertest</li>
+<li>持续集成：Travis-cli</li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xiongsheng</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-08-09</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/image/wechat-rewardpic.png">
+        <span>微信打赏</span>
+      </label>
+    
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/nodejs/">nodejs</a>
+          
+          <a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/fe-engineering/">
+            <span class="next-text nav-default">前端工程化之代码规范化及测试规范化</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: 'unitTesting.md',
+    title: 'nodejs单元测试',
+    link: decodeURI(location.href),
+    desc: '为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们',
+    owner: 'huoyanwuzhe629',
+    repo: 'comments',
+    oauth: {
+      client_id: '82c0c71af55c6226bc6b',
+      client_secret: 'c4e33c830095e29488b2d5b0a4c93ab85e3a0765'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:xs0629@aliyun.com" rel="me noopener" class="iconfont icon-email"
+        title="email" target="_blank">
+      </a>
+      <a href="http://github.com/huoyanwuzhe629" rel="me noopener" class="iconfont icon-github"
+        title="github" target="_blank">
+      </a>
+  <a href="https://huoyanwuzhe629.github.io/index.xml" rel="noopener" type="application/rss+xml" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">xiongsheng</span></span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+</body>
+</html>

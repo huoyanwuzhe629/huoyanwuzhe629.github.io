@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 千阳谷</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 18 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://huoyanwuzhe629.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>nodejs单元测试</title>
+      <link>https://huoyanwuzhe629.github.io/post/unittesting/</link>
+      <pubDate>Thu, 09 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/unittesting/</guid>
+      <description>为什么需要单元测试 代码部署之前，进行一定的单元测试是十分必要的，这样能够有效并且持续保证代码质量。而实践表明，高质量的单元测试还可以帮助我们</description>
+    </item>
     
     <item>
       <title>前端工程化之代码规范化及测试规范化</title>
