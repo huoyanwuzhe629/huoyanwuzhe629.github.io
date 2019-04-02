@@ -45,6 +45,12 @@
   </url>
   
   <url>
+    <loc>https://huoyanwuzhe629.github.io/post/miniprogram_architech_selection/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://huoyanwuzhe629.github.io/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
