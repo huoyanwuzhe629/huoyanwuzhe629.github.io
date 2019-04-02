@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>小程序 on 千阳谷</title>
+    <link>https://huoyanwuzhe629.github.io/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+    <description>Recent content in 小程序 on 千阳谷</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 02 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://huoyanwuzhe629.github.io/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>小程序开发选型</title>
+      <link>https://huoyanwuzhe629.github.io/post/miniprogram_architech_selection/</link>
+      <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/miniprogram_architech_selection/</guid>
+      <description>小程序开发选型分享 现在小程序的开发也越来越成熟了，完善了很多的API、组件、架构等，社区也由原来的零星点点到现在的不大不小，但也算是有了，期</description>
+    </item>
+    
+  </channel>
+</rss>
