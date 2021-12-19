@@ -199,7 +199,7 @@ let db = {
 obj.myFun.myCall(db,&amp;#39;成都&amp;#39;,&amp;#39;上海&amp;#39;);     // 德玛 年龄 99  来自 成都去往上海
 obj.myFun.myApply(db,[&amp;#39;成都&amp;#39;,&amp;#39;上海&amp;#39;]);      // 德玛 年龄 99  来自 成都去往上海
 obj.myFun.myBind(db,&amp;#39;成都&amp;#39;,&amp;#39;上海&amp;#39;)();       // 德玛 年龄 99  来自 成都去往上海
-obj.myFun.myBind(db,[&amp;#39;成都&amp;#39;,&amp;#39;上海&amp;#39;])();   // 德玛 年龄 99  来自 成都, 上海去往 undefined&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+obj.myFun.myBind(db,[&amp;#39;成都test&amp;#39;,&amp;#39;上海&amp;#39;])();   // 德玛 年龄 99  来自 成都test, 上海去往 undefined&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
       
