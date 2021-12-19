@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>面试 on 千阳谷</title>
+    <link>https://huoyanwuzhe629.github.io/categories/%E9%9D%A2%E8%AF%95/</link>
+    <description>Recent content in 面试 on 千阳谷</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 10 Dec 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://huoyanwuzhe629.github.io/categories/%E9%9D%A2%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>前端基础面试手写题</title>
+      <link>https://huoyanwuzhe629.github.io/post/interview/handwriting4js/</link>
+      <pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/interview/handwriting4js/</guid>
+      <description>&lt;p&gt;前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

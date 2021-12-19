@@ -6,10 +6,20 @@
     <description>Recent content in Javascript on 千阳谷</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 07 Jul 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Dec 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://huoyanwuzhe629.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>前端基础面试手写题</title>
+      <link>https://huoyanwuzhe629.github.io/post/interview/handwriting4js/</link>
+      <pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/interview/handwriting4js/</guid>
+      <description>&lt;p&gt;前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>响应式编程入门</title>

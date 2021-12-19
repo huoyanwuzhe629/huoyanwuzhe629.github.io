@@ -24,6 +24,60 @@
     </item>
     
     <item>
+      <title>前端基础面试手写题</title>
+      <link>https://huoyanwuzhe629.github.io/post/interview/handwriting4js/</link>
+      <pubDate>Fri, 10 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://huoyanwuzhe629.github.io/post/interview/handwriting4js/</guid>
+      
+        <description>&lt;p&gt;前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+&lt;/p&gt;
+
+&lt;h3 id=&#34;call的实现&#34;&gt;call的实现&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一个参数为null或者undefined时，this指向全局对象window，值为原始值的指向该原始值的自动包装对象，如 String、Number、Boolean&lt;/li&gt;
+&lt;li&gt;为了避免函数名与上下文(context)的属性发生冲突，使用Symbol类型作为唯一值&lt;/li&gt;
+&lt;li&gt;将函数作为传入的上下文(context)属性执行&lt;/li&gt;
+&lt;li&gt;函数执行完成后删除该属性&lt;/li&gt;
+&lt;li&gt;返回执行结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;  Function.prototype.myCall = function(context,...args){
+    let cxt = context || window;
+    //将当前被调用的方法定义在cxt.func上.(为了能以对象调用形式绑定this)
+    //新建一个唯一的Symbol变量避免重复
+    let func = Symbol() 
+    cxt[func] = this;
+    args = args ? args : []
+    //以对象调用形式调用func,此时this指向cxt 也就是传入的需要绑定的this指向
+    const res = args.length &amp;gt; 0 ? cxt[func](...args) : cxt[func]();
+    //删除该方法，不然会对传入对象造成污染（添加该方法）
+    delete cxt[func];
+  return res;
+}&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>小程序开发选型</title>
       <link>https://huoyanwuzhe629.github.io/post/miniprogram_architech_selection/</link>
       <pubDate>Tue, 02 Apr 2019 00:00:00 +0000</pubDate>
