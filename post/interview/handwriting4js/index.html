@@ -25,7 +25,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="xiongsheng" />
-  <meta name="description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固 " />
+  <meta name="description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固。 " />
 
   <meta name="keywords" content="blog, Johnson, 千阳" />
 
@@ -58,7 +58,7 @@
 
 
 <meta property="og:title" content="前端基础面试手写题" />
-<meta property="og:description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+<meta property="og:description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固。
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://huoyanwuzhe629.github.io/post/interview/handwriting4js/" />
@@ -80,20 +80,20 @@
 
 
 <meta itemprop="name" content="前端基础面试手写题">
-<meta itemprop="description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+<meta itemprop="description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固。
 ">
 
 
 <meta itemprop="datePublished" content="2021-12-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2021-12-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="405">
+<meta itemprop="wordCount" content="1131">
 
 
 
 <meta itemprop="keywords" content="javascript,面试," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="前端基础面试手写题"/>
-<meta name="twitter:description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+<meta name="twitter:description" content="前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固。
 "/>
 
 <!--[if lte IE 9]>
@@ -297,8 +297,8 @@
               <a href="/categories/%E9%9D%A2%E8%AF%95/"> 面试 </a>
             
           </div>
-        <span class="more-meta"> 约 405 字 </span>
-        <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 约 1131 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
       </div>
     </header>
 
@@ -313,7 +313,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#call的实现">call的实现</a></li>
+<li><a href="#1-call的实现">1. call的实现</a></li>
+<li><a href="#2-apply的实现">2. apply的实现</a></li>
+<li><a href="#3-bind的实现">3. bind的实现</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -323,10 +325,10 @@
 
     
     <div class="post-content">
-      <p>前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固
+      <p>前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固。
 </p>
 
-<h3 id="call的实现">call的实现</h3>
+<h3 id="1-call的实现">1. call的实现</h3>
 
 <ul>
 <li>第一个参数为null或者undefined时，this指向全局对象window，值为原始值的指向该原始值的自动包装对象，如 String、Number、Boolean</li>
@@ -352,19 +354,147 @@
 </span><span class="lnt">13
 </span></pre></td>
 <td class="lntd">
-<pre class="chroma">  Function.prototype.myCall = function(context,...args){
-    let cxt = context || window;
-    //将当前被调用的方法定义在cxt.func上.(为了能以对象调用形式绑定this)
-    //新建一个唯一的Symbol变量避免重复
-    let func = Symbol() 
-    cxt[func] = this;
-    args = args ? args : []
-    //以对象调用形式调用func,此时this指向cxt 也就是传入的需要绑定的this指向
-    const res = args.length &gt; 0 ? cxt[func](...args) : cxt[func]();
-    //删除该方法，不然会对传入对象造成污染（添加该方法）
-    delete cxt[func];
+<pre class="chroma">Function.prototype.myCall = function(context,...args){
+  let cxt = context || window;
+  //将当前被调用的方法定义在cxt.func上.(为了能以对象调用形式绑定this)
+  //新建一个唯一的Symbol变量避免重复
+  let func = Symbol() 
+  cxt[func] = this;
+  args = args ? args : []
+  //以对象调用形式调用func,此时this指向cxt 也就是传入的需要绑定的this指向
+  const res = args.length &gt; 0 ? cxt[func](...args) : cxt[func]();
+  //删除该方法，不然会对传入对象造成污染（添加该方法）
+  delete cxt[func];
   return res;
 }</pre></td></tr></table>
+</div>
+</div>
+<h3 id="2-apply的实现">2. apply的实现</h3>
+
+<ul>
+<li>前部分与call一样</li>
+<li>第二个参数可不传，为数组</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Function.prototype.apply = function(context, args) {
+  const ctx = context || window;
+  const fn = new Symbol();
+  ctx[fn] = this;
+  const res = ctx[fn](...args);
+  delete ctx[fn];
+  return res;
+}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="3-bind的实现">3. bind的实现</h3>
+
+<p>需要考虑：</p>
+
+<ul>
+<li>bind除了this之外，还可以传入多个参数</li>
+<li>bind返回的是个函数，也可以传入多个参数</li>
+<li>新函数可能被当做构造函数调用</li>
+<li>函数可能有返回值</li>
+</ul>
+
+<p>实现方法：</p>
+
+<ul>
+<li>bind方法不会立即执行，需要返回一个待执行的函数</li>
+<li>要实现作用域的绑定（apply）</li>
+<li>注意apply的传递参数格式（数组传参）</li>
+<li>当作为构造函数时，进行原型继承</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Function.prototype.myBind = function (context, ...args) {
+  if (typeof this !== &#39;function&#39;) {
+    throw new Error(&#39;type error&#39;);
+  }
+  const fn = this;
+  const args = args ? args : [];
+  return function F(...newFnArgs) {
+    const conbineArgs = [...args, ...newFnArgs];
+    // 因为返回了一个函数，我们可以 new F()，所以需要判断使用了new的情况
+    if (this instanceof F) {
+      return new fn(...conbineArgs);
+    }
+    return fn.apply(context, conbineArgs);
+  };
+};</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>测试</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let name = &#39;小王&#39;,age =17;
+let obj = {
+    name:&#39;小张&#39;,
+    age: this.age,
+    myFun: function(from,to){
+        console.log(this.name + &#39; 年龄 &#39; + this.age+&#39;来自 &#39;+from+&#39;去往&#39;+ to)
+    }
+}
+let db = {
+    name: &#39;德玛&#39;,
+    age: 99
+}
+
+//结果
+obj.myFun.myCall(db,&#39;成都&#39;,&#39;上海&#39;);     // 德玛 年龄 99  来自 成都去往上海
+obj.myFun.myApply(db,[&#39;成都&#39;,&#39;上海&#39;]);      // 德玛 年龄 99  来自 成都去往上海
+obj.myFun.myBind(db,&#39;成都&#39;,&#39;上海&#39;)();       // 德玛 年龄 99  来自 成都去往上海
+obj.myFun.myBind(db,[&#39;成都&#39;,&#39;上海&#39;])();   // 德玛 年龄 99  来自 成都, 上海去往 undefined</pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -437,7 +567,7 @@
     id: 'handwriting4js.md',
     title: '前端基础面试手写题',
     link: decodeURI(location.href),
-    desc: '\x3cp\x3e前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固\n\x3c\/p\x3e',
+    desc: '\x3cp\x3e前端面试会经常问一些js基础的手写题，如防抖节流，promise实现等等，需要经常查看与巩固。\n\x3c\/p\x3e',
     owner: 'huoyanwuzhe629',
     repo: 'comments',
     oauth: {
