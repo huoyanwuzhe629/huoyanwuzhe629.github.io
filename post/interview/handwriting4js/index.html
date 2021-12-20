@@ -86,7 +86,7 @@
 
 <meta itemprop="datePublished" content="2021-12-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2021-12-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1139">
+<meta itemprop="wordCount" content="1541">
 
 
 
@@ -297,8 +297,8 @@
               <a href="/categories/%E9%9D%A2%E8%AF%95/"> 面试 </a>
             
           </div>
-        <span class="more-meta"> 约 1139 字 </span>
-        <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span class="more-meta"> 约 1541 字 </span>
+        <span class="more-meta"> 预计阅读 4 分钟 </span>
       </div>
     </header>
 
@@ -316,6 +316,8 @@
 <li><a href="#1-call的实现">1. call的实现</a></li>
 <li><a href="#2-apply的实现">2. apply的实现</a></li>
 <li><a href="#3-bind的实现">3. bind的实现</a></li>
+<li><a href="#4-继承-圣杯模式">4. 继承 圣杯模式</a></li>
+<li><a href="#5-es6-继承">5. ES6 继承</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -495,6 +497,90 @@ obj.myFun.myCall(db,&#39;成都&#39;,&#39;上海&#39;);     // 德玛 年龄 99 
 obj.myFun.myApply(db,[&#39;成都&#39;,&#39;上海&#39;]);      // 德玛 年龄 99  来自 成都去往上海
 obj.myFun.myBind(db,&#39;成都&#39;,&#39;上海&#39;)();       // 德玛 年龄 99  来自 成都去往上海
 obj.myFun.myBind(db,[&#39;成都test&#39;,&#39;上海&#39;])();   // 德玛 年龄 99  来自 成都test, 上海去往 undefined</pre></td></tr></table>
+</div>
+</div>
+<h3 id="4-继承-圣杯模式">4. 继承 圣杯模式</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">function inherit(Target, Origin){
+  function F() {} // 函数F作为一个中间层，上连father，下连Son，使两函数互不干扰
+  F.prototype = Origin.prototype;
+  Target.prototype = new F();
+  Target.prototype.constructor = Target;
+  // son原型归位
+  Target.prototype.uber = Origin.prototype;
+}</pre></td></tr></table>
+</div>
+</div>
+<h3 id="5-es6-继承">5. ES6 继承</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">//class 相当于es5中构造函数
+//class中定义方法时，前后不能加function，全部定义在class的prototyte属性中
+//class中定义的所有方法是不可枚举的
+//class中只能定义方法，不能定义对象，变量等
+//class和方法内默认都是严格模式
+//es5中constructor为隐式属性
+class People{
+  constructor(name=&#39;wang&#39;,age=&#39;27&#39;){
+    this.name = name;
+    this.age = age;
+  }
+  eat(){
+    console.log(`${this.name} ${this.age} eat food`)
+  }
+}
+class Woman extends People {
+  constructor(name=&#39;wang&#39;, age=&#39;27&#39;) {
+    super(name, age);
+  }
+  eat(){
+    super.eat();
+  }
+}
+let wonmanObj=new Woman(&#39;xiaoxiami&#39;); 
+wonmanObj.eat();
+//es5继承先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.apply(this)）。 
+//es6继承是使用关键字super先创建父类的实例对象this，最后在子类class中修改this。</pre></td></tr></table>
 </div>
 </div>
     </div>
