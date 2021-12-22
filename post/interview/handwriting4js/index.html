@@ -86,7 +86,7 @@
 
 <meta itemprop="datePublished" content="2021-12-10T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2021-12-10T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="2050">
+<meta itemprop="wordCount" content="2064">
 
 
 
@@ -297,7 +297,7 @@
               <a href="/categories/%E9%9D%A2%E8%AF%95/"> 面试 </a>
             
           </div>
-        <span class="more-meta"> 约 2050 字 </span>
+        <span class="more-meta"> 约 2064 字 </span>
         <span class="more-meta"> 预计阅读 5 分钟 </span>
       </div>
     </header>
@@ -319,6 +319,7 @@
 <li><a href="#4-继承-圣杯模式">4. 继承 圣杯模式</a></li>
 <li><a href="#5-es6-继承">5. ES6 继承</a></li>
 <li><a href="#6-new的实现">6. new的实现</a></li>
+<li><a href="#7-instanceof的实现">7. instanceof的实现</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -624,28 +625,46 @@ wonmanObj.eat();
 }</pre></td></tr></table>
 </div>
 </div>
-<ol>
-<li>instanceof的实现</li>
+<h3 id="7-instanceof的实现">7. instanceof的实现</h3>
+
+<ul>
 <li>instanceof 是用来判断A是否为B的实例，表达式为：A instanceof B，如果A是B的实例，则返回true,否则返回false。</li>
 <li>instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性。</li>
 <li>不能检测基本数据类型，在原型链上的结果未必准确，不能检测null,undefined</li>
-<li>实现：遍历左边变量的原型链，直到找到右边变量的 prototype，如果没有找到，返回 false
-<code>
-function myInstanceOf(a, b) {
-let left = a.__proto__;
-const right = b.prototype;
-while (true) {
-if (!left) {
-  return false;
-}
-if (left === right) {
-  return true;
-}
-left = left.__proto__;
-}
-}
-</code></li>
-</ol>
+<li>实现：遍历左边变量的原型链，直到找到右边变量的 prototype，如果没有找到，返回 false</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">function myInstanceOf(a, b) {
+  let left = a.__proto__;
+  const right = b.prototype;
+  while (true) {
+    if (!left) {
+      return false;
+    }
+    if (left === right) {
+      return true;
+    }
+    left = left.__proto__;
+  }
+}</pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
